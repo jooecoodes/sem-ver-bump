@@ -1,0 +1,19 @@
+services:
+  svb:
+    build:
+      context: .
+      target: dev
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    image: svb-dev
+    working_dir: /app
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      - .:/app
+    environment:
+      OPENROUTER_API_KEY: ${OPENROUTER_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      GROQ_API_KEY: ${GROQ_API_KEY:-}
+      SVB_BASE_URL: ${SVB_BASE_URL:-}
+    command: ["sleep", "infinity"]
